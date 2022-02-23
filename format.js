@@ -62,3 +62,26 @@ const gup = (name, url) => {
   var results = regex.exec(url);
   return results == null ? null : results[1];
 }
+
+// 1、动态正则：保留小数位
+var bool = new RegExp("^\\d*(\\.\\d{0,"+n+"})?$").test(12.0);
+console.log(bool, '3'); // true
+
+var bool = new RegExp("^\\d*(\\.\\d{0,"+n+"})?$").test('12.567');
+console.log(bool, '4'); // true
+
+var bool = new RegExp("^\\d*(\\.\\d{0,"+n+"})?$").test('kjjkj');
+console.log(bool, '5'); // false
+
+// 2、定义只能保留2位小数
+var r = /^\d+(\.\d{0,2})?$/.test('12')  // true
+console.log(r);
+
+var r1 = /^\d+(\.\d{0,2})?$/.test('12.12')  // true
+console.log(r1);
+
+var r2 = /^\d+(\.\d{0,2})?$/.test('1a.12')  // false
+console.log(r2);
+
+var r3 =  /^\d+(\.\d{0,2})?$/.test('12.123')  // false
+console.log(r3);
