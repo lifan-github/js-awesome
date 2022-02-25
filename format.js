@@ -85,3 +85,22 @@ console.log(r2);
 
 var r3 =  /^\d+(\.\d{0,2})?$/.test('12.123')  // false
 console.log(r3);
+
+
+
+// 合并price相同的，volume值相加合并
+var arr = [{price: '1000', volume: '0.123'}, {price: '1002', volume: '0.113'},{price: '1003', volume: '0.723'},{price: '1002', volume: '0.23'}];
+function delSameObjValue (arr, keyName, keyValue){
+    let baseArr = [], newArr = [];
+    for (let key in arr) {
+        if (baseArr.includes(arr[key][keyName])) {
+            newArr[baseArr.indexOf(arr[key][keyName])][keyValue] = +newArr[baseArr.indexOf(arr[key][keyName])][keyValue] + Number(arr[key][keyValue]);
+        } else {
+            baseArr.push(arr[key][keyName]);
+            newArr.push(arr[key]);
+        }
+    }
+    return newArr;
+ }
+
+ console.log(delSameObjValue(arr, 'price', 'volume'));
